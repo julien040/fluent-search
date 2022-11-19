@@ -16,6 +16,19 @@ const search = new Fuse(values, {
   keys: ["name", "keywords"],
 });
 
+const ResultItem = ({ name, image }: { name: string; image: string }) => {
+  return (
+    <Link
+      className=" flex justify-center flex-col items-center bg-white/30 p-4 rounded-xl w-[47%] sm:w-[31%] md:w-[23%]"
+      href={"/emoji/" + name}
+      key={name}
+    >
+      <img src={image} alt={name} className="w-14 h-14 aspect-square" />
+      <p className="text-sm mt-2">{name}</p>
+    </Link>
+  );
+};
+
 const SearchResults: React.FC<Props> = ({ input }) => {
   const [Results, setResults] = useState<any>();
   useEffect(() => {
@@ -27,14 +40,18 @@ const SearchResults: React.FC<Props> = ({ input }) => {
   return (
     <div className="flex justify-items-stretch gap-4 flex-wrap ">
       {input.length === 0
-        ? Array(30)
-            .fill(0)
-            .map((_, i) => (
-              <div
-                key={i}
-                className=" w-[47%] sm:w-[31%] md:w-[23%] h-24 bg-white/30 rounded-lg animate-pulse"
-              ></div>
-            ))
+        ? Object.values(data)
+
+            .slice(0, 30)
+            .map((emoji: any) => {
+              return (
+                <ResultItem
+                  key={emoji.name}
+                  name={emoji.name}
+                  image={getImageURLFromGitHub(emoji.variant[0]["3D"] ?? "")}
+                />
+              );
+            })
         : null}
       {Results?.length === 0 && input.length > 0 ? (
         <p>
@@ -45,18 +62,11 @@ const SearchResults: React.FC<Props> = ({ input }) => {
       {Results &&
         input.length > 0 &&
         Results.map((item: { item: Emoji }) => (
-          <Link
-            className=" flex justify-center flex-col items-center bg-white/30 p-4 rounded-xl w-[47%] sm:w-[31%] md:w-[23%]"
-            href={"/emoji/" + item.item.name}
+          <ResultItem
             key={item.item.name}
-          >
-            <img
-              src={getImageURLFromGitHub(item.item.variant[0]["3D"] ?? "")}
-              alt={item.item.name}
-              className="w-14 h-14 aspect-square"
-            />
-            <p className="text-sm mt-2">{item.item.name}</p>
-          </Link>
+            name={item.item.name}
+            image={getImageURLFromGitHub(item.item.variant[0]["3D"] ?? "")}
+          />
         ))}
     </div>
   );

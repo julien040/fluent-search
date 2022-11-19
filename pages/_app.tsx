@@ -42,7 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <Component {...pageProps} />
-      <footer className="mt-8 pb-8 text-sm text-center text-black/60">
+      <footer className="mt-24 pb-8 text-sm text-center text-black/60">
         <p>
           Made with ❤️ by{" "}
           <Link className="hover:underline" href="https://julienc.me">

@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { Suspense, useEffect } from "react";
 import { useState } from "react";
 import { useDebouncedCallback, useDebounce } from "use-debounce";
@@ -11,14 +12,12 @@ const Results = dynamic(() => import("../src/components/search"), {
 });
 
 export default function Home() {
-  const [input, setInput] = useState("");
-  const [debouncedInput] = useDebounce(input, 300);
+  const router = useRouter();
+  const [input, setInput] = useState(
+    typeof router.query.q === "string" ? router.query.q : ""
+  );
+  const [debouncedInput] = useDebounce(input, 200);
   // Debounce the input to prevent too many search requests
-
-  useEffect(() => {
-    // Do something with the debounced input
-    console.log("That mf changed");
-  }, [debouncedInput]);
 
   return (
     <div>
@@ -32,19 +31,6 @@ export default function Home() {
       </Head>
 
       <main className=" mt-4 ">
-        {/* <img
-          src="https://github.com/microsoft/fluentui-emoji/raw/main/art/readme_banner.webp"
-          alt="Microsoft Emoji"
-          className="rounded-lg aspect-[1765/800] "
-        />
-        <p className="text-gray-600 text-sm mt-4 ">
-          I love emojis from Microsoft Fluent UI. They are so cute and
-          expressive. <br />
-          Each time I want to use them, I have to search for them on GitHub. So
-          I made this website to make it easier for me to find them.
-          <br />
-          Feel free to use it too.
-        </p> */}
         <div className="">
           <input
             type="text"
