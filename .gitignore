@@ -34,3 +34,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Content initialization
+repo
+
+# IPyhon
+
+.ipynb_checkpoints
