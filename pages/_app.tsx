@@ -43,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className="max-w-3xl h-full mx-auto p-4 transition-all">
       <Script src="https://sa.fluent-ui.julienc.me/latest.js" />
-      <header className="py-2 flex justify-between">
+      <header className="py-2 flex items-center justify-between">
         <Link href="/">
           <Logo />
         </Link>
@@ -64,18 +64,13 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <Component {...pageProps} />
-      <footer className=" mt-12 pb-8 text-sm text-center text-black/60">
-        <p>
-          Made with ❤️ by{" "}
-          <Link className="hover:underline" href="https://julienc.me">
-            Julien
-          </Link>
-        </p>
+      <footer className=" mt-8 pb-8 text-sm text-center text-black/60">
         <p>
           DISCLAIMER : This tool is not made by Microsoft and I&apos;m not a
           Microsoft employee (even if I want to)
         </p>
-        <div className="flex justify-center gap-4 mt-4 text-black/80 ">
+
+        <div className="flex justify-center gap-4 mt-1 mb-2 text-black/80 ">
           <Link
             className="hover:underline"
             href="https://github.com/microsoft/fluentui-emoji"
@@ -95,6 +90,12 @@ export default function App({ Component, pageProps }: AppProps) {
             About
           </Link>
         </div>
+        <p>
+          Made with ❤️ by{" "}
+          <Link className="hover:underline" href="https://julienc.me">
+            Julien
+          </Link>
+        </p>
       </footer>
     </div>
   );

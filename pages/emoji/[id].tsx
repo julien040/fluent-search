@@ -21,14 +21,9 @@ const Emoji: NextPage<Props> = ({ emoji }) => {
           content={"Download " + emoji.name + " from Microsoft Fluent UI Emoji"}
         />
       </Head>
-      <div className="max-w-md mx-auto text-center ">
-        <img
-          className="w-28 h-28 aspect-square mx-auto"
-          src={getImageURLFromGitHub(emoji.variant[0]["3D"] ?? "")}
-          alt={"Emoji of " + emoji.name}
-        />
+      <div className=" mx-auto ">
         <h1 className="text-2xl mt-4 font-bold">{emoji.name}</h1>
-        <div className="text-sm text-gray-600 flex my-0 gap-4 items-center mx-auto max-w-fit">
+        <div className="text-sm mt-1 text-gray-600 flex my-0 gap-4 ">
           <span>Emoji on your device:</span>
           <span
             onClick={() => copyToClipboard(emoji.glyph)}
@@ -38,8 +33,8 @@ const Emoji: NextPage<Props> = ({ emoji }) => {
           </span>
         </div>
       </div>
-      <div className="bg-white/40 p-4 rounded-xl mt-4 ">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div className="bg-white/40 p-6 rounded-xl mt-2 ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {emoji.variant.map((variants) =>
             Object.values(variants).map((variant, index) => (
               <a
@@ -59,9 +54,6 @@ const Emoji: NextPage<Props> = ({ emoji }) => {
             ))
           )}
         </div>
-        <p className="mt-4 text-sm text-gray-600">
-          Click on an emoji to open it
-        </p>
       </div>
     </div>
   );

@@ -13,9 +13,13 @@ const Results = dynamic(() => import("../src/components/search"), {
 
 export default function Home() {
   const router = useRouter();
-  const [input, setInput] = useState(
-    typeof router.query.q === "string" ? router.query.q : ""
-  );
+  const [input, setInput] = useState("");
+  useEffect(() => {
+    if (router.query.q) {
+      setInput(router.query.q as string);
+    }
+  }, [router.query.q]);
+
   const [debouncedInput] = useDebounce(input, 200);
   // Debounce the input to prevent too many search requests
 
@@ -41,6 +45,7 @@ export default function Home() {
             type="text"
             placeholder="Love"
             onChange={updateInput}
+            value={input}
             className="rounded-lg mb-8 bg-white/50 p-3 w-full placeholder:text-gray-400 placeholder:text-sm focus:bg-white/70 transition-all"
           />
           <Suspense fallback={<div>Loading...</div>}>
