@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Suspense, useEffect } from "react";
 import { useState } from "react";
-import { useDebouncedCallback, useDebounce } from "use-debounce";
+import { useDebounce } from "use-debounce";
 
 // Because the json file is too big, we need to use dynamic import
 const Results = dynamic(() => import("../src/components/search"), {
@@ -18,6 +18,11 @@ export default function Home() {
   );
   const [debouncedInput] = useDebounce(input, 200);
   // Debounce the input to prevent too many search requests
+
+  function updateInput(e: React.ChangeEvent<HTMLInputElement>) {
+    setInput(e.target.value);
+    router.push("/?q=" + e.target.value, undefined, { shallow: true });
+  }
 
   return (
     <div>
@@ -35,7 +40,7 @@ export default function Home() {
           <input
             type="text"
             placeholder="Love"
-            onChange={(e) => setInput(e.target.value)}
+            onChange={updateInput}
             className="rounded-lg mb-8 bg-white/50 p-3 w-full placeholder:text-gray-400 placeholder:text-sm focus:bg-white/70 transition-all"
           />
           <Suspense fallback={<div>Loading...</div>}>
