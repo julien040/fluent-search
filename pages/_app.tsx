@@ -6,6 +6,7 @@ import Script from "next/script";
 import * as React from "react";
 import Logo from "../src/components/autoChangeEmoji";
 import { SVGProps } from "react";
+import Head from "next/head";
 
 const GitHubLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -43,6 +44,17 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className="max-w-3xl h-full mx-auto p-4 transition-all">
       <Script src="https://sa.fluent-ui.julienc.me/latest.js" />
+      <Head>
+        <title>Microsoft Emoji search</title>
+        <meta
+          name="description"
+          content="Search and find your favorite Microsoft Emoji"
+        />
+        <link
+          rel="icon"
+          href="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Smiling%20face%20with%20heart-eyes/3D/smiling_face_with_heart-eyes_3d.png"
+        />
+      </Head>
       <header className="py-2 flex items-center justify-between">
         <Link href="/">
           <Logo />

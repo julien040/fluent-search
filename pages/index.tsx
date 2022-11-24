@@ -30,15 +30,6 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <title>Microsoft Emoji search</title>
-        <meta
-          name="description"
-          content="Search and find your favorite Microsoft Emoji"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main className=" mt-4 ">
         <div className="">
           <input
