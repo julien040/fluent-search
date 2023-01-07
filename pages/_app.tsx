@@ -77,7 +77,20 @@ export default function App({ Component, pageProps }: AppProps) {
       `}</style>
       <Component {...pageProps} />
       <footer className=" mt-8 pb-8 text-sm text-center text-black/60">
-        <p>
+        <a
+          href="https://www.producthunt.com/posts/fluent-emoji-search?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-fluent&#0045;emoji&#0045;search"
+          target="_blank"
+          rel="noreferrer"
+          className=""
+        >
+          <img
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=374074&theme=light"
+            alt="Fluent&#0032;Emoji&#0032;search - Search&#0032;and&#0032;download&#0032;the&#0032;new&#0032;Microsoft&#0032;emojis | Product Hunt"
+            width="250"
+            height="54"
+          />
+        </a>
+        <p className="mt-4">
           DISCLAIMER : This tool is not made by Microsoft and I&apos;m not a
           Microsoft employee (even if I want to)
         </p>
